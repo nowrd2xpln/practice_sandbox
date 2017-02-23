@@ -5,16 +5,22 @@ typedef struct list List;
 
 struct
 {
-    int cnt;
+    int data;
     Node *next;
 } node;
 
 struct
 {
-    int num;
+    int cnt;
     Node *head;
     Node *tail
 } list;
+
+int insertNode(List *llist, int data)
+{
+
+    return 0;
+}
 
 int main(void)
 {
