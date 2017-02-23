@@ -33,9 +33,25 @@ int deleteList(List *llist)
     return 0;
 }
 
-int insertNode(List *llist, int data)
+int insertNode(List *llist, int value)
 {
-    return 0;
+    Node *newnode = NULL;
+    int ret = 0;
+
+    // Create new node
+    newnode = (Node *) malloc(sizeof(node));
+
+    if(newnode == NULL)
+    {
+        printf("Failed to allocate memory for new node\n");
+        ret = -1;
+    }
+    else
+    {
+        newnode->data = 0;
+    }
+
+    return ret;
 }
 
 void traverseList(List *llist)
