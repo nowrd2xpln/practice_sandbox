@@ -12,7 +12,7 @@ typedef struct _alu {
 	char *pOps;
 	fptrDisplayOps Display;
 	fptrDelete Delete;
-}
+} Alu;
 
 Alu *new_Alu(const char* const pOps);	// Constructor
 void delete_Alu(Alu *const pAluObj);	// Destructor
