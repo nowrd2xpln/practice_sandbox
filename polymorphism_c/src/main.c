@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <alu.h>
 
 int main()
 {
