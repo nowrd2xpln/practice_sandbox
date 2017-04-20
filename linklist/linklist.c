@@ -4,33 +4,45 @@
 typedef struct node Node;
 typedef struct list List;
 
-struct
+typedef struct node
 {
     int data;
     Node *next;
-} node;
+} Node;
 
-struct
+typedef struct list
 {
     int cnt;
     Node *head;
     Node *tail;
-} list;
+} List;
 
 List *initList(void)
 {
     List *llist = NULL;
 
-    llist = (List *) malloc(sizeof(list));
+    llist = (List *) malloc(sizeof(List));
 
     return llist;
 }
 
-int deleteList(List *llist)
+void deleteList(List *llist)
 {
-    free(llist);
+    Node *ptr = NULL;
+    Node *tmp = NULL;
 
-    return 0;
+    if(llist == NULL)
+    {
+        ptr = llist->head;
+        llist->head = NULL;
+        
+        while(ptr != NULL)
+        {
+            tmp = ptr->next;
+            free(ptr);
+            ptr = tmp;
+        }
+    }
 }
 
 int insertNode(List *llist, int value)
@@ -39,7 +51,7 @@ int insertNode(List *llist, int value)
     int ret = 0;
 
     // Create new node
-    newnode = (Node *) malloc(sizeof(node));
+    newnode = (Node *) malloc(sizeof(Node));
 
     if(newnode == NULL)
     {
@@ -48,7 +60,7 @@ int insertNode(List *llist, int value)
     }
     else
     {
-        newnode->data = 0;
+        newnode->data = value;
     }
 
     return ret;
@@ -56,7 +68,7 @@ int insertNode(List *llist, int value)
 
 void traverseList(List *llist)
 {
-    return 0;
+    printf("%s: enter\n", __FUNCTION__);
 }
 
 int main(void)
