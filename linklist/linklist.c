@@ -92,6 +92,23 @@ void traverseList(List *llist)
     }
 }
 
+void searchList(List *llist, int data)
+{
+    Node *cur = NULL;
+    int idx =  0;
+
+    idx = llist->cnt;
+    cur = llist->head;
+
+    while(cur != NULL) {
+        if(cur->data == data) {
+            printf("Found Node(%d): %p - %d\n", idx, cur, cur->data);
+            break;
+        }
+        idx--;
+        cur = cur->next;
+    }
+}
 int main(void)
 {
 	List *L1 = NULL;
@@ -105,7 +122,9 @@ int main(void)
 
     traverseList(L1);
 
-
+    searchList(L1, 57);
+    searchList(L1, 58);
+    searchList(L1, 59);
     traverseList(L1);
 
 	deleteList(L1);
