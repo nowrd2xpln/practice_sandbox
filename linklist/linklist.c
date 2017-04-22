@@ -80,7 +80,16 @@ int insertNode(List *llist, int value)
 
 void traverseList(List *llist)
 {
-    printf("%s: enter\n", __FUNCTION__);
+    Node *cur = NULL;
+    int idx =  0;
+
+    idx = llist->cnt;
+    cur = llist->head;
+
+    while(cur != NULL) {
+	    printf("Node(%d): %p - %d\n", idx--, cur, cur->data);
+        cur = cur->next;
+    }
 }
 
 int main(void)
@@ -91,6 +100,14 @@ int main(void)
 
 	L1 = initList();
 	insertNode(L1, 57);
+	insertNode(L1, 58);
+	insertNode(L1, 59);
+
+    traverseList(L1);
+
+
+    traverseList(L1);
+
 	deleteList(L1);
     return 0;
 }
