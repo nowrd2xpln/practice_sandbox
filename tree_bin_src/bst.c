@@ -46,6 +46,42 @@ Node *insertNode(Node *root, int data)
     return cur;
 }
 
+Node *deleteNode(Node *node, int data)
+{
+    Node *temp = NULL;
+
+    if(node == NULL) {
+        printf("Node not found\n");
+    }
+    else if(data < node->data)
+    {
+        node->lft = deleteNode(node->lft, data);
+    }
+    else if(data > node->data)
+    {
+        node->rht = deleteNode(node->rht, data);
+    }
+    else
+    {
+        if(node->rht && node->lft) {
+            temp = findMin(node->rht);
+            node->data = temp->data;
+
+            node->rht = Delete(node>rht, temp->data);
+        }
+        else {
+            temp = node;
+            if(node->left == NULL) {
+                node = node->right;
+            }
+            else if(node->right == NULL) {
+                node = node->lft;
+            }
+            free(temp);
+        }
+    }
+}
+
 void traverse(Node *node)
 {
     if(node == NULL) {
