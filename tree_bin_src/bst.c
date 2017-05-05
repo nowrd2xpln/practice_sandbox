@@ -24,6 +24,34 @@ Node *newNode(int data)
     return tmp;
 }
 
+Node *findMin(Node *node)
+{
+    if(node == NULL) {
+        // No element in the tree
+        return NULL;
+    }
+    
+    if(node->lft) {
+        return findMin(node->lft);
+    }
+    else {
+        return node;
+    }
+}
+
+Node *findMax(Node *node)
+{
+    if(node == NULL) {
+        return NULL;
+    }
+
+    if(node->rht) {
+        return findMax(node->rht);
+    }
+    else
+        return node;
+}
+
 Node *insertNode(Node *root, int data)
 {
     Node *cur = root;
@@ -67,19 +95,23 @@ Node *deleteNode(Node *node, int data)
             temp = findMin(node->rht);
             node->data = temp->data;
 
-            node->rht = Delete(node>rht, temp->data);
+            node->rht = deleteNode(node->rht, temp->data);
         }
         else {
             temp = node;
-            if(node->left == NULL) {
-                node = node->right;
+            if(node->lft == NULL) {
+                node = node->rht;
             }
-            else if(node->right == NULL) {
+            else if(node->rht == NULL) {
                 node = node->lft;
             }
+
+            printf("Deleting %d - %p\n", temp->data, temp);
             free(temp);
         }
     }
+
+    return node;
 }
 
 void traverse(Node *node)
@@ -89,7 +121,7 @@ void traverse(Node *node)
     }
     
     traverse(node->lft);
-    printf("%d\n", node->data);
+    printf("%d- - %p\n", node->data, node);
     traverse(node->rht);
 }
 
@@ -102,6 +134,13 @@ int main()
     rt = insertNode(rt, 57);
     rt = insertNode(rt, 58);
     rt = insertNode(rt, 56);
+    traverse(rt);
+    rt = deleteNode(rt, 56);
+    if(rt == NULL) {
+        printf("rt null\n");
+    }
+    traverse(rt);
+    rt = deleteNode(rt, 58);
     traverse(rt);
     
     
