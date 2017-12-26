@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 /** @brief Takes a string and reverses the order of
  *         characters.
@@ -10,13 +11,13 @@
  *  @return void.
  */
 
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     struct ListNode *next;
- * };
- */
+
+// Definition for singly-linked list.
+struct ListNode {
+    int val;
+    struct ListNode *next;
+};
+
 struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
     unsigned int dgt_cnt = 0;
     unsigned int dgt_ttl = 0;
