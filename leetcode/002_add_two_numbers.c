@@ -13,30 +13,53 @@
 
 
 // Definition for singly-linked list.
-struct ListNode {
+struct node {
     int val;
-    struct ListNode *next;
+    struct node *next;
 };
 
-struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
+struct list {
+    struct node *head;
+    unsigned int cnt;
+};
+
+unsigned int list_cnt(struct node *list)
+{
+    unsigned int cnt = 0;
+    struct node *curr = list;
+
+    while( curr != NULL) {
+        cnt++;
+        curr = curr->next;
+    }
+
+    return cnt;
+}
+
+struct node* addTwoNumbers(struct node* l1, struct node* l2) {
     unsigned int dgt_cnt = 0;
+    unsigned int l1_dgt_cnt = 0;
+    unsigned int l2_dgt_cnt = 0;
     unsigned int dgt_ttl = 0;
     unsigned int cf = 0;
-    struct ListNode *l1_nd_ptr = l1;
-    struct ListNode *l2_nd_ptr = l2;
-    struct ListNode *l3_nd_ptr = NULL;
-    struct ListNode *nd_ptr = NULL;
-    struct ListNode *hd_nd_ptr = NULL;
-    struct ListNode *new_nd = NULL;
+    struct node *l1_nd_ptr = l1;
+    struct node *l2_nd_ptr = l2;
+    struct node *l3_nd_ptr = NULL;
+    struct node *nd_ptr = NULL;
+    struct node *hd_nd_ptr = NULL;
+    struct node *new_nd = NULL;
     
     // Count digits
-    while(l1_nd_ptr != NULL)
+    while(!l1_nd_ptr && !l2_nd_ptr)
     {
         dgt_cnt++;
+
+
+
         printf("dgt_cnt = %d\n", dgt_cnt);
         
         // Also able to do allocation here as list buffer
-        new_nd = (struct ListNode *) malloc(sizeof(struct ListNode));
+        new_nd = (struct node *) malloc(sizeof(struct node));
         printf("new node: %p\n", new_nd);
         
         // check for valid memory allocation
@@ -51,11 +74,26 @@ struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
      
         printf("%p->%d :%p->%p\n", new_nd, new_nd->val, new_nd, new_nd->next);
         // Move  pointer to next node
-        l1_nd_ptr = l1_nd_ptr->next;
+        
+        if(l1_nd_ptr != NULL)
+        {
+            l1_nd_ptr = l1_nd_ptr->next;
+            l1_dgt_cnt++;
+        }
+
+        if(l2_nd_ptr != NULL)
+        {
+            l2_nd_ptr = l2_nd_ptr->next;
+            l2_dgt_cnt++;
+        }
     }
     
     printf("dgt_cnt %d\n\n", dgt_cnt);
-    
+    printf("l1_dgt_cnt %d\n\n", l1_dgt_cnt);
+    printf("l2_dgt_cnt %d\n\n", l2_dgt_cnt);
+
+    exit(0);
+
     // Initialize list pointers
     dgt_cnt = 0;
     l1_nd_ptr = l1;
@@ -100,9 +138,17 @@ struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
 
 int main(void)
 {
+    struct node nd3 = { 3, NULL };
+    struct node nd2 = { 2, &nd3 };
+    struct node nd1 = { 1, &nd2 };
 
-  
-  
-  return 0;
+    struct node nd5 = { 5, NULL };
+    struct node nd4 = { 4, &nd5 };
+	
+    struct list l1 = { &nd1, 0 };
+    struct list l2 = { &nd4, 0 };
+
+    
+    return 0;
 }
 
