@@ -23,7 +23,7 @@ struct list {
     unsigned int cnt;
 };
 
-unsigned int list_cnt(struct node *list)
+unsigned int list_count(struct node *list)
 {
     unsigned int cnt = 0;
     struct node *curr = list;
