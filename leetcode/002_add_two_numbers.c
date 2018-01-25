@@ -23,10 +23,12 @@ struct list {
     unsigned int cnt;
 };
 
-unsigned int list_count(struct node *list)
+unsigned int list_count(struct list *list)
 {
     unsigned int cnt = 0;
-    struct node *curr = list;
+    struct node *curr = list->head;
+
+    printf("ENTER\n");
 
     while( curr != NULL) {
         cnt++;
@@ -148,6 +150,12 @@ int main(void)
     struct list l1 = { &nd1, 0 };
     struct list l2 = { &nd4, 0 };
 
+    l1.cnt = list_count(&l1);
+
+    printf("l1.cnt %d l2.cnt %d\n", l1.cnt, l2.cnt);
+
+    l2.cnt = list_count(&l2);
+    printf("l1.cnt %d l2.cnt %d\n", l1.cnt, l2.cnt);
     
     return 0;
 }
