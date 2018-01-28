@@ -167,8 +167,14 @@ int main(void)
     struct list l1 = { &nd1, 0 };
     struct list l2 = { &nd4, 0 };
 
-    addTwoNumbers(l1.head, l2.head);
+    struct node *ans = NULL;
+
+    // Testcase: Equal number of digits
+    ans = addTwoNumbers(&nd2, &nd4);
     
+    // Testcase: Unequal number of digits
+    ans = addTwoNumbers(&nd5, &nd1);
+
     return 0;
 }
 
