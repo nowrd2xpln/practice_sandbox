@@ -68,26 +68,6 @@ struct node* addTwoNumbers(struct node* l1, struct node* l2) {
     struct node *hd_nd_ptr = NULL;
     struct node *new_nd = NULL;
     
-    printf("Adding digits\n");
-
-    // Check list counts
-    while(l1_nd_ptr || l2_nd_ptr)
-    { 
-        if(l1_nd_ptr) 
-        {
-            l1_dgt_cnt++;
-            l1_nd_ptr = l1_nd_ptr->next;
-        }
-        if(l2_nd_ptr) 
-        {
-            l2_dgt_cnt++;
-            l2_nd_ptr = l2_nd_ptr->next;
-        }
-    }
-
-    printf("l1 %d\n", l1_dgt_cnt);
-    printf("l2 %d\n", l2_dgt_cnt);
-        
     if(l1_dgt_cnt && l2_dgt_cnt)
     {
         l3_nd_head = (struct node *) malloc(sizeof(struct node));
@@ -99,44 +79,43 @@ struct node* addTwoNumbers(struct node* l1, struct node* l2) {
 
     while(l1_nd_ptr || l2_nd_ptr)
     { 
-        printf("%02d: %p %p\n", ++iter, l1_nd_ptr, l2_nd_ptr);
+        // Counter interations
+        ++iter;
 
-        
-        // Add cases
+        // Adding scenarios
         if(l1_nd_ptr && l2_nd_ptr)
         {
-            printf("both: %d\n", l1_nd_ptr->val + l2_nd_ptr->val);
             sum = l1_nd_ptr->val + l2_nd_ptr->val;
         }
         else if(l1_nd_ptr && !l2_nd_ptr)
         {
-            printf("l1 only: %d\n", l1_nd_ptr->val);
             sum = l1_nd_ptr->val;
         }
         else if(!l1_nd_ptr && l2_nd_ptr)    
         {
-            printf("l2 only: %d\n", l2_nd_ptr->val);
             sum = l2_nd_ptr->val;
         }
 
-
-        if(iter == 1)
+        // Node allocation 
+        if(iter == 1) // First digit
         {
             l3_nd_head = (struct node *) malloc(sizeof(struct node));
             l3_nd_ptr = l3_nd_head;
             l3_nd_ptr->next = NULL;
         } 
-        else
+        else // Subsequest digits
         {
             l3_nd_ptr->next = (struct node *) malloc(sizeof(struct node));
             l3_nd_ptr = l3_nd_ptr->next;
             l3_nd_ptr->next = NULL;
         }
 
+        // Assign sum 
         l3_nd_ptr->val = sum;
         printf("sum dgt %p %d\n", l3_nd_ptr, sum);
         
 
+        // Shift to next node
         if(l1_nd_ptr) 
         {
             l1_nd_ptr = l1_nd_ptr->next;
