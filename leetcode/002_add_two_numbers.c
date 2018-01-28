@@ -96,6 +96,18 @@ struct node* addTwoNumbers(struct node* l1, struct node* l2) {
             sum = l2_nd_ptr->val;
         }
 
+        if(cf == 1)
+        {
+            sum++;
+            cf = 0;
+        }
+
+        if(sum > 10)
+        {
+            cf = 1;
+            sum %= 10;
+        }
+
         // Node allocation 
         if(iter == 1) // First digit
         {
