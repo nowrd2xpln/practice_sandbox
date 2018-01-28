@@ -20,6 +20,7 @@ struct node {
 
 struct list {
     struct node *head;
+    struct node *msd;
     unsigned int cnt;
 };
 
@@ -44,13 +45,95 @@ struct node* addTwoNumbers(struct node* l1, struct node* l2) {
     unsigned int l2_dgt_cnt = 0;
     unsigned int dgt_ttl = 0;
     unsigned int cf = 0;
+    unsigned int iter = 0;
+    unsigned int sum = 0;
     struct node *l1_nd_ptr = l1;
     struct node *l2_nd_ptr = l2;
     struct node *l3_nd_ptr = NULL;
+    struct node *l3_nd_head = NULL;
     struct node *nd_ptr = NULL;
     struct node *hd_nd_ptr = NULL;
     struct node *new_nd = NULL;
     
+    printf("Adding digits\n");
+
+    // Check list counts
+    while(l1_nd_ptr || l2_nd_ptr)
+    { 
+        if(l1_nd_ptr) 
+        {
+            l1_dgt_cnt++;
+            l1_nd_ptr = l1_nd_ptr->next;
+        }
+        if(l2_nd_ptr) 
+        {
+            l2_dgt_cnt++;
+            l2_nd_ptr = l2_nd_ptr->next;
+        }
+    }
+
+    printf("l1 %d\n", l1_dgt_cnt);
+    printf("l2 %d\n", l2_dgt_cnt);
+        
+    if(l1_dgt_cnt && l2_dgt_cnt)
+    {
+        l3_nd_head = (struct node *) malloc(sizeof(struct node));
+        l3_nd_ptr = l3_nd_head;
+    }
+
+    l1_nd_ptr = l1;
+    l2_nd_ptr = l2;
+
+    while(l1_nd_ptr || l2_nd_ptr)
+    { 
+        printf("%02d: %p %p\n", ++iter, l1_nd_ptr, l2_nd_ptr);
+
+        
+        // Add cases
+        if(l1_nd_ptr && l2_nd_ptr)
+        {
+            printf("both: %d\n", l1_nd_ptr->val + l2_nd_ptr->val);
+            sum = l1_nd_ptr->val + l2_nd_ptr->val;
+        }
+        else if(l1_nd_ptr && !l2_nd_ptr)
+        {
+            printf("l1 only: %d\n", l1_nd_ptr->val);
+            sum = l1_nd_ptr->val;
+        }
+        else if(!l1_nd_ptr && l2_nd_ptr)    
+        {
+            printf("l2 only: %d\n", l2_nd_ptr->val);
+            sum = l2_nd_ptr->val;
+        }
+
+
+        if(iter == 1)
+        {
+            l3_nd_head = (struct node *) malloc(sizeof(struct node));
+            l3_nd_ptr = l3_nd_head;
+            l3_nd_ptr->next = NULL;
+        } 
+        else
+        {
+            l3_nd_ptr->next = (struct node *) malloc(sizeof(struct node));
+            l3_nd_ptr->next->next = NULL;
+        }
+            l3_nd_ptr->val = sum;
+
+        if(l1_nd_ptr) 
+        {
+            l1_nd_ptr = l1_nd_ptr->next;
+        }
+
+        if(l2_nd_ptr) 
+        {
+            l2_nd_ptr = l2_nd_ptr->next;
+        }
+        
+    }
+
+    return NULL;
+
     // Count digits
     while(!l1_nd_ptr && !l2_nd_ptr)
     {
@@ -152,10 +235,9 @@ int main(void)
 
     l1.cnt = list_count(&l1);
 
-    printf("l1.cnt %d l2.cnt %d\n", l1.cnt, l2.cnt);
-
     l2.cnt = list_count(&l2);
-    printf("l1.cnt %d l2.cnt %d\n", l1.cnt, l2.cnt);
+    
+    addTwoNumbers(l1.head, l2.head);
     
     return 0;
 }
