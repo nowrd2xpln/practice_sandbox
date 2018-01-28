@@ -253,10 +253,6 @@ int main(void)
     struct list l1 = { &nd1, 0 };
     struct list l2 = { &nd4, 0 };
 
-    l1.cnt = list_count(&l1);
-
-    l2.cnt = list_count(&l2);
-    
     addTwoNumbers(l1.head, l2.head);
     
     return 0;
