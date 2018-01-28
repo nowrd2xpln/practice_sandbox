@@ -152,7 +152,7 @@ struct node* addTwoNumbers(struct node* l1, struct node* l2) {
 
     print_list(l3_nd_head);
 
-    return NULL;
+    return l3_nd_head;
 
     // Count digits
     while(!l1_nd_ptr && !l2_nd_ptr)
