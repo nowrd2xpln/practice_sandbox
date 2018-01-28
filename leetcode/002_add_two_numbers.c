@@ -24,6 +24,19 @@ struct list {
     unsigned int cnt;
 };
 
+void print_list(struct node *nd)
+{
+    struct node *curr = nd;
+
+    while(nd != NULL)
+    {
+        printf("%d", nd->val);    
+        nd = nd->next;
+    }
+    
+    printf("\n");
+}
+
 unsigned int list_count(struct list *list)
 {
     unsigned int cnt = 0;
@@ -116,9 +129,13 @@ struct node* addTwoNumbers(struct node* l1, struct node* l2) {
         else
         {
             l3_nd_ptr->next = (struct node *) malloc(sizeof(struct node));
-            l3_nd_ptr->next->next = NULL;
+            l3_nd_ptr = l3_nd_ptr->next;
+            l3_nd_ptr->next = NULL;
         }
-            l3_nd_ptr->val = sum;
+
+        l3_nd_ptr->val = sum;
+        printf("sum dgt %p %d\n", l3_nd_ptr, sum);
+        
 
         if(l1_nd_ptr) 
         {
@@ -131,6 +148,9 @@ struct node* addTwoNumbers(struct node* l1, struct node* l2) {
         }
         
     }
+
+
+    print_list(l3_nd_head);
 
     return NULL;
 
