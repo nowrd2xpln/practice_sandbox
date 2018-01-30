@@ -100,7 +100,7 @@ struct node* addTwoNumbers(struct node* l1, struct node* l2) {
             cf = 0;
         }
 
-        if(sum > 10)
+        if(sum > 999999999)
         {
             cf = 1;
             sum %= 10;
