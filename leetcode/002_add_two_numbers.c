@@ -30,7 +30,7 @@ void print_list(struct node *nd)
 
     while(nd != NULL)
     {
-        printf("%d", nd->val);    
+        printf("%d ", nd->val);    
         nd = nd->next;
     }
 }
@@ -97,13 +97,16 @@ struct node* addTwoNumbers(struct node* l1, struct node* l2) {
         if(cf == 1)
         {
             sum++;
-            cf = 0;
         }
 
-        if(sum > 999999999)
+        if(sum > 9)
         {
             cf = 1;
             sum %= 10;
+        }
+        else
+        {
+            cf = 0;
         }
 
         // Node allocation 
@@ -135,7 +138,15 @@ struct node* addTwoNumbers(struct node* l1, struct node* l2) {
         {
             l2_nd_ptr = l2_nd_ptr->next;
         }
-        
+
+        if(cf == 1 && !l1_nd_ptr && !l2_nd_ptr)
+        {
+            l3_nd_ptr->next = (struct node *) malloc(sizeof(struct node));
+            l3_nd_ptr = l3_nd_ptr->next;
+            l3_nd_ptr->next = NULL;
+            l3_nd_ptr->val = 1;
+    
+        }
     }
 
 
