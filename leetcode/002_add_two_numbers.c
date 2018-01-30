@@ -33,8 +33,6 @@ void print_list(struct node *nd)
         printf("%d", nd->val);    
         nd = nd->next;
     }
-    
-    printf("\n");
 }
 
 unsigned int list_count(struct list *list)
@@ -124,7 +122,7 @@ struct node* addTwoNumbers(struct node* l1, struct node* l2) {
 
         // Assign sum 
         l3_nd_ptr->val = sum;
-        printf("sum dgt %p %d\n", l3_nd_ptr, sum);
+        //printf("sum dgt %p %d\n", l3_nd_ptr, sum);
         
 
         // Shift to next node
@@ -140,8 +138,6 @@ struct node* addTwoNumbers(struct node* l1, struct node* l2) {
         
     }
 
-
-    print_list(l3_nd_head);
 
     return l3_nd_head;
 }
@@ -164,9 +160,31 @@ int main(void)
 
     // Testcase: Equal number of digits
     ans = addTwoNumbers(&nd2, &nd4);
+    print_list(&nd2);
+    printf(" + ");
+    print_list(&nd4);
+    printf(" = ");
+    print_list(ans);
+    printf("\n");
     
     // Testcase: Unequal number of digits
     ans = addTwoNumbers(&nd5, &nd1);
+    print_list(&nd5);
+    printf(" + ");
+    print_list(&nd1);
+    printf(" = ");
+    print_list(ans);
+    printf("\n");
+
+
+    // Testcase: Unequal number of digits with Carry Over
+    ans = addTwoNumbers(&nd9, &nd3);
+    print_list(&nd9);
+    printf(" + ");
+    print_list(&nd3);
+    printf(" = ");
+    print_list(ans);
+    printf("\n");
 
     return 0;
 }
