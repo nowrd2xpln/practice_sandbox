@@ -155,8 +155,10 @@ int main(void)
     struct node nd5 = { 5, NULL };
     struct node nd4 = { 4, &nd5 };
 	
-    struct list l1 = { &nd1, 0 };
-    struct list l2 = { &nd4, 0 };
+    struct node nd6 = { 9, NULL };
+    struct node nd7 = { 9, &nd6 };
+    struct node nd8 = { 9, &nd7 };
+    struct node nd9 = { 9, &nd8 };
 
     struct node *ans = NULL;
 
