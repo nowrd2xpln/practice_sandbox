@@ -7,6 +7,7 @@ bool test01();
 bool test02();
 bool test03();
 bool test04();
+bool test05();
 
 int main(void)
 {
@@ -17,6 +18,7 @@ int main(void)
     test02();
     test03();
     test04();
+    test05();
 
     return ret;
 }
@@ -36,6 +38,7 @@ bool isOneBitCharacter(int* bits, int bitsSize)
             case 1:
                 ++idx;
                 //printf("2bit\n");
+                ret = false;
                 break;
             case 0:
                 //printf("1bit\n");
@@ -96,6 +99,21 @@ bool test04()
 {
     bool ret = false;
     int array[] = {1,0,1,1,1,1,1,0};
+    int len = sizeof(array)/sizeof(array[0]);
+
+    printf("len %d\n", len);
+    
+    ret = isOneBitCharacter(array, len);
+
+    printf("%d\n", ret?1:0);
+    return ret;
+}
+
+
+bool test05()
+{
+    bool ret = false;
+    int array[] = {0,1,0};
     int len = sizeof(array)/sizeof(array[0]);
 
     printf("len %d\n", len);
