@@ -4,8 +4,9 @@
 #include <stdbool.h>
 
 bool test01();
-uint32_t test02();
-uint32_t test03();
+bool test02();
+bool test03();
+bool test04();
 
 int main(void)
 {
@@ -13,6 +14,9 @@ int main(void)
     
     
     test01();
+    test02();
+    test03();
+    test04();
 
     return ret;
 }
@@ -25,16 +29,16 @@ bool isOneBitCharacter(int* bits, int bitsSize)
  
     for(idx = 0; idx < bitsSize; ++idx)
     {
-        printf("idx %d\n", idx);
+        //printf("idx %d\n", idx);
 
         switch(bits[idx])
         {
             case 1:
                 ++idx;
-                printf("2bit\n");
+                //printf("2bit\n");
                 break;
             case 0:
-                printf("1bit\n");
+                //printf("1bit\n");
                 ret = true;
                 break;
             default:
@@ -44,10 +48,54 @@ bool isOneBitCharacter(int* bits, int bitsSize)
     
     return ret;
 }
+
 bool test01()
 {
     bool ret = false;
     int array[] = {1,1,1,0,1,0,1,0,1,0,0};
+    int len = sizeof(array)/sizeof(array[0]);
+
+    printf("len %d\n", len);
+    
+    ret = isOneBitCharacter(array, len);
+
+    printf("%d\n", ret?1:0);
+    return ret;
+}
+
+bool test02()
+{
+    bool ret = false;
+    int array[] = {0};
+    int len = sizeof(array)/sizeof(array[0]);
+
+    printf("len %d\n", len);
+    
+    ret = isOneBitCharacter(array, len);
+
+    printf("%d\n", ret?1:0);
+    return ret;
+}
+
+bool test03()
+{
+    bool ret = false;
+    int array[] = {1,0};
+    int len = sizeof(array)/sizeof(array[0]);
+
+    printf("len %d\n", len);
+    
+    ret = isOneBitCharacter(array, len);
+
+    printf("%d\n", ret?1:0);
+    return ret;
+}
+
+
+bool test04()
+{
+    bool ret = false;
+    int array[] = {1,0,1,1,1,1,1,0};
     int len = sizeof(array)/sizeof(array[0]);
 
     printf("len %d\n", len);
