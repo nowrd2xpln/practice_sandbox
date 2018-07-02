@@ -23,7 +23,7 @@ public:
             if(mapp.count(x) == 1)
             {
                 ans[0] = i;
-                ans[1] = mapp[i];
+                ans[1] = mapp.find(x)->second;
                 cout << nums[i] << " + " << x << " = " << target << '\n';
                 break;
             }
