@@ -19,12 +19,12 @@ public:
         
         for(int i = 0; i < nums.size(); i++)
         {
-            int x = target - mapp[i];
+            int x = target - nums[i];
             if(mapp.count(x) == 1)
             {
-                ans[0] = mapp[i];
-                ans[1] = mapp.find(x)->second;
-                cout << mapp[i] << " + " << x << " = " << target << '\n';
+                ans[0] = i;
+                ans[1] = mapp[i];
+                cout << nums[i] << " + " << x << " = " << target << '\n';
                 break;
             }
         }
@@ -48,6 +48,7 @@ int main()
     std::cout << "Hello World!\n" << std::endl;    
         
     test01();
+    test02();
 
     return ret;
 }
@@ -66,3 +67,16 @@ int test01()
     return ret;
 }
 
+int test02()
+{
+    int ret = 0;
+    vector<int> nums = {1,2,3,4,7};
+    int tgt = 3;
+    Solution sln01;
+
+    sln01.twoSum(nums, tgt);
+    sln01.printAns();
+
+    
+    return ret;
+}
