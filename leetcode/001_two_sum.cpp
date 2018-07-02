@@ -49,6 +49,7 @@ int main()
         
     test01();
     test02();
+    test03();
 
     return ret;
 }
@@ -72,6 +73,20 @@ int test02()
     int ret = 0;
     vector<int> nums = {1,2,3,4,7};
     int tgt = 3;
+    Solution sln01;
+
+    sln01.twoSum(nums, tgt);
+    sln01.printAns();
+
+    
+    return ret;
+}
+
+int test03()
+{
+    int ret = 0;
+    vector<int> nums = {1,2,3,4,7};
+    int tgt = 11;
     Solution sln01;
 
     sln01.twoSum(nums, tgt);
