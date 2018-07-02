@@ -64,7 +64,6 @@ int test01()
     sln01.twoSum(nums, tgt);
     sln01.printAns();
 
-    
     return ret;
 }
 
@@ -78,7 +77,6 @@ int test02()
     sln01.twoSum(nums, tgt);
     sln01.printAns();
 
-    
     return ret;
 }
 
@@ -92,6 +90,5 @@ int test03()
     sln01.twoSum(nums, tgt);
     sln01.printAns();
 
-    
     return ret;
 }
